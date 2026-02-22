@@ -25,11 +25,11 @@ gdf = load_ndvi_data()
 
 if gdf is not None and not gdf.empty:
     # Перевіряємо, чи є потрібні колонки
-    if 'NDVI' in gdf.columns and 'zone' in gdf.columns:
+    if 'NDVI' in gdf.columns and 'ZONE' in gdf.columns:
         
         # Блок метрик
         c1, c2, c3 = st.columns(3)
-        c1.metric("Кількість зон", len(gdf['zone'].unique()))
+        c1.metric("Кількість зон", len(gdf['ZONE'].unique()))
         c2.metric("Максимальний NDVI", f"{gdf['NDVI'].max():.3f}")
         c3.metric("Мінімальний NDVI", f"{gdf['NDVI'].min():.3f}")
         
@@ -58,7 +58,7 @@ if gdf is not None and not gdf.empty:
                 'fillOpacity': 0.7  # Прозорість
             },
             tooltip=folium.GeoJsonTooltip(
-                fields=['zone', 'NDVI'], 
+                fields=['ZONE', 'NDVI'], 
                 aliases=['Зона:', 'Індекс NDVI:'],
                 style="font-family: sans-serif; font-size: 14px;"
             )
@@ -69,4 +69,4 @@ if gdf is not None and not gdf.empty:
 
         st_folium(m, width="100%", height=600, returned_objects=[])
     else:
-        st.warning("У файлі відсутні колонки 'zone' або 'NDVI'. Перевірте структуру даних.")
+        st.warning("У файлі відсутні колонки 'ZONE' або 'NDVI'. Перевірте структуру даних.")
