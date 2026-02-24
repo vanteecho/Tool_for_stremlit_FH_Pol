@@ -8,7 +8,7 @@ import tempfile
 import numpy as np
 from gradations import GRADATIONS
 
-DATA_FILE = "data.zip"
+DATA_FILE = "Data_to transfer/data.zip"
 DEFAULT_ENCODING = "utf-8"
 
 UA_LABELS = {
